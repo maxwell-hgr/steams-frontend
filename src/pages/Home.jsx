@@ -1,26 +1,8 @@
-import { useEffect, useState } from "react";
-import { api, requestConfig } from "../utils/config";
-
+import { useState } from "react";
 const Home = () => {
     const [lobbies, setLobbies] = useState([]);
 
-    useEffect(() => {
-        async function fetchLobbies() {
-            const config = requestConfig("GET", null);
-            try {
-                const res = await fetch(api + "/lobbies", config);
-                let data = await res.json();
-                if (!Array.isArray(data)) {
-                    data = [];
-                }
-                setLobbies(data);
-            } catch (err) {
-                console.error("Error fetching lobbies:", err);
-                setLobbies([]);
-            }
-        }
-        fetchLobbies();
-    }, []);
+
 
     return (
         <div>
@@ -34,6 +16,6 @@ const Home = () => {
         </div>
     );
 
-}
+};
 
 export default Home;
