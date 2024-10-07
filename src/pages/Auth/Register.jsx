@@ -10,10 +10,8 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const body = { email, password, steamUrl };
-        console.log(body);
-        const user = await authService.register(body);
-        console.log(user);
-    }
+        const res = await authService.register(body);
+    };
 
     return (
         <div>
@@ -27,7 +25,7 @@ const Register = () => {
                 <input type="submit" value="Register" />
             </form>
         </div>
-    )
-}
+    );
+};
 
 export default Register;
