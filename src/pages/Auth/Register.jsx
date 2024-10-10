@@ -1,5 +1,6 @@
 import { useState } from "react";
 import authService from "../../services/authService";
+import "./Auth.css";
 
 const Register = () => {
     const [email, setEmail] = useState("");
@@ -13,16 +14,21 @@ const Register = () => {
     };
 
     return (
-        <div>
-            <h2>Register</h2>
+        <div id="register">
             <form onSubmit={handleSubmit}>
-                Email:
-                <input type="text" onChange={e => setEmail(e.target.value)} value={email} />
-                Password:
-                <input type="password" onChange={e => setPassword(e.target.value)} value={password} />
-                SteamUrl:
-                <input type="text" onChange={e => setSteamUrl(e.target.value)} value={steamUrl} />
-                <input type="submit" value="Register" />
+                <div>
+                    <label htmlFor="email">EMAIL</label>
+                    <input id="email" type="text" value={email} onChange={e => setEmail(e.target.value)} />
+                </div>
+                <div>
+                    <label htmlFor="password">PASSWORD</label>
+                    <input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                </div>
+                <div>
+                    <label htmlFor="steamUtl">STEAM URL</label>
+                    <input id="text" type="password" value={steamUrl} onChange={e => setSteamUrl(e.target.value)} />
+                </div>
+                <button type="submit">SIGN UP</button>
             </form>
         </div>
     );

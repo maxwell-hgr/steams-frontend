@@ -1,0 +1,103 @@
+#login,
+#register {
+    background-color: #171d25;
+    padding: 1.5em 2em;
+    max-width: 500px;
+    margin: 2em auto;
+}
+
+#login h2,
+#register h2 {
+    text-align: left;
+    font-size: 1.8em;
+    font-weight: bolder;
+    margin-top: 0;
+    color: floralwhite;
+}
+
+.subtitle {
+    font-weight: bold;
+    color: #999;
+    margin-bottom: 1.5em;
+}
+
+#login form,
+#register form {
+    padding-bottom: 1.5em;
+    margin-bottom: 1.5em;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#login button,
+#register button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: center;
+    background: linear-gradient(90deg, #06BFFF 0%, #2D73FF 100%);
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-weight: 400;
+    font-family: inherit;
+    text-align: center;
+    cursor: pointer;
+    width: 270px;
+    height: 55px;
+    transition: 0.3s;
+}
+
+#login button:hover,
+#register button:hover {
+    scale: 1.1;
+}
+
+#login p,
+#register p {
+    text-align: center;
+}
+
+#login p a,
+#register p a {
+    color: #afafaf;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#login div,
+#register div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+#login label,
+#register label {
+    margin-bottom: 2px;
+    color: #c6d4df;
+    font-size: 0.9em;
+}
+
+#login label[for="email"],
+#register label[for="email"] {
+    color: #1999ff;
+}
+
+#login input[type="text"],
+#login input[type="password"],
+#register input[type="text"],
+#register input[type="password"] {
+    color: #c6d4df;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #2a475e;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    transition: border 0.3s;
+}

@@ -1,0 +1,6 @@
+.container {
+    min-height: 100vh;
+    max-width: 60%;
+    margin: 0 auto;
+    /* background-color: #f4f4f4; */
+}
