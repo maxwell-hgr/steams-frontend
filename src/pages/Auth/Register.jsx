@@ -5,16 +5,16 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [steamUrl, setSteamUrl] = useState("");
-    const [user, setUser] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const body = { email, password, steamUrl };
-        const res = await authService.register(body);
+        const data = { email, password, steamUrl };
+        await authService.register(data);
     };
 
     return (
         <div>
+            <h2>Register</h2>
             <form onSubmit={handleSubmit}>
                 Email:
                 <input type="text" onChange={e => setEmail(e.target.value)} value={email} />

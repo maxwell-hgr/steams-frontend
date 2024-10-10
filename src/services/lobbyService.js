@@ -43,6 +43,20 @@ const get = async () => {
     }
 };
 
+const getUserLobbies = async (token, id) => {
+    const config = requestConfig("GET", null, token);
+
+    try {
+        const url = id ? `${api}/lobbies/user/${id}` : `${api}/lobbies/user`;
+        const res = await fetch(url, config)
+            .then((res) => res.json())
+            .catch((err) => err);
+        return res;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 const put = async (data, token, id) => {
     const config = requestConfig("PUT", data, token);
 
@@ -71,12 +85,13 @@ const del = async (data = null, token, id) => {
     }
 };
 
-const authService = {
+const lobbyService = {
     create,
     show,
     get,
+    getUserLobbies,
     put,
     del
 };
 
-export default authService;
+export default lobbyService;
