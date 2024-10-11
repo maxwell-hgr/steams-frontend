@@ -1,0 +1,45 @@
+/* Estilos gerais para o contêiner do usuário */
+.user-navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    /* Cor do texto branco */
+}
+
+/* Nome de usuário */
+.username {
+    font-size: 14px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+/* Contêiner da imagem de perfil e notificações */
+.profile-container {
+    position: relative;
+}
+
+/* Estilos para a imagem de perfil */
+.profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Badge de notificação */
+.notification-badge {
+    position: absolute;
+    top: 0;
+    left: -10px;
+    background-color: red;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+}

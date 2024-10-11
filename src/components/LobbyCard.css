@@ -1,0 +1,53 @@
+.lobby-card {
+    width: 475px;
+    background: linear-gradient(180deg, #171A21 33%, #1B2838 100%);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: visible;
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}
+
+.lobby-card:hover {
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+.lobby-header h2 {
+    color: inherit;
+    font-size: 18px;
+    font-weight: 350;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+.lobby-image img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.lobby-avatars {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.lobby-avatars .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+
+.lobby-avatars .avatar:nth-child(3) {
+    border-color: yellow;
+}

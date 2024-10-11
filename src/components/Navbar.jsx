@@ -1,6 +1,7 @@
 //import authService from "../services/authService";
 import { NavLink, Link } from "react-router-dom";
 import "./Navbar.css";
+import UserNavbar from "./UserNavbar";
 
 const Navbar = () => {
     // const handleLogout = () => {
@@ -29,7 +30,9 @@ const Navbar = () => {
                     </NavLink>
                 </li>
             </ul>
-            <h3><NavLink to="/login">Login</NavLink></h3>
+            <div>
+                <UserNavbar username="dole" profileImageUrl="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/1986840/548ed028087f655ac27720723081bece8e5d5f88.gif" notificationCount="3" />
+            </div>
         </nav>
     );
 };
