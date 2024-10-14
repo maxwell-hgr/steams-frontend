@@ -1,5 +1,19 @@
 import { api, requestConfig } from "../utils/config";
 
+const profile = async (token) => {
+    const config = requestConfig("GET", null, token);
+
+    try {
+        const res = await fetch(`${api}/users/profile`, config)
+            .then((res) => res.json())
+            .catch((err) => err);
+
+        return res;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 const show = async (id) => {
     const config = requestConfig("GET");
 
@@ -57,6 +71,7 @@ const del = async (data = null, token, id) => {
 };
 
 const authService = {
+    profile,
     show,
     get,
     put,

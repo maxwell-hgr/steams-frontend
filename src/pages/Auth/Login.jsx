@@ -2,15 +2,21 @@ import { useState } from "react";
 import authService from "../../services/authService";
 import { Link } from "react-router-dom";
 import "./Auth.css";
+import { useDispatch } from "react-redux";
+import { login } from '../../redux/slices/authSlice';
 
 const Login = () => {
+    const dispatch = useDispatch();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = { email, password };
-        await authService.login(data);
+        const res = await authService.login(data);
+        dispatch(login(res));
+
     };
 
     return (

@@ -1,45 +1,63 @@
-/* Estilos gerais para o contêiner do usuário */
-.user-navbar {
+.profile-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-header {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    /* Cor do texto branco */
+    align-items: flex-start;
+    cursor: pointer;
 }
 
-/* Nome de usuário */
-.username {
+.profile-username {
+    margin-right: 10px;
     font-size: 14px;
-    margin-bottom: 5px;
-    text-align: center;
+    color: white;
+    align-self: flex-start;
+    /* Alinha o texto com o topo da imagem */
 }
 
-/* Contêiner da imagem de perfil e notificações */
-.profile-container {
+.profile-image-container {
     position: relative;
 }
 
-/* Estilos para a imagem de perfil */
 .profile-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #ccc;
 }
 
-/* Badge de notificação */
-.notification-badge {
+.profile-dropdown {
     position: absolute;
-    top: 0;
-    left: -10px;
-    background-color: red;
+    top: 30px;
+    left: 0;
+    background-color: #2c3e50;
+    padding: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 150px;
+}
+
+.profile-dropdown ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-dropdown ul li {
+    padding: 10px 0;
+}
+
+.profile-dropdown ul li a {
     color: white;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-decoration: none;
+}
+
+.profile-dropdown ul li a:hover {
+    color: #3498db;
+}
+
+.dropdown-arrow {
     font-size: 12px;
-    font-weight: bold;
+    margin-left: 5px;
 }

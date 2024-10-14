@@ -1,0 +1,102 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #1b1e2aa3;
+    color: #c7d5e0;
+    padding: 20px;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #333;
+}
+
+.profile-info h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.profile-info p {
+    margin: 5px 0;
+}
+
+.profile-level {
+    text-align: right;
+}
+
+.level-badge {
+    display: flex;
+    align-items: center;
+    background-color: #2b2f3a;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.level-number {
+    font-size: 24px;
+    color: #f39c12;
+    margin-right: 10px;
+}
+
+.badge-info span {
+    display: block;
+}
+
+.profile-body {
+    display: flex;
+}
+
+.favorite-game {
+    flex: 2;
+    background-color: #2b2f3a;
+    padding: 15px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.game-banner {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.game-info h3 {
+    margin: 10px 0;
+}
+
+.profile-sidebar {
+    flex: 1;
+}
+
+.profile-stats,
+.friend-list {
+    background-color: #2b2f3a;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.badge-icons img {
+    width: 30px;
+    margin-right: 10px;
+}
+
+.friend {
+    display: flex;
+    align-items: center;
+}
+
+.friend img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
