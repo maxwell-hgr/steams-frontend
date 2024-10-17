@@ -1,6 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const { email, token } = JSON.parse(localStorage.getItem("user"));
+let email = null;
+let token = null;
+
+const userStorage = JSON.parse(localStorage.getItem("user"));
+
+if (userStorage) {
+    email = userStorage.email;
+    token = userStorage.token;
+}
 
 const initialState = {
     isAuthenticated: token ? true : false,

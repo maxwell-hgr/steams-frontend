@@ -16,7 +16,6 @@ const Login = () => {
         const data = { email, password };
         const res = await authService.login(data);
         dispatch(login(res));
-
     };
 
     return (

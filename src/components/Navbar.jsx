@@ -25,13 +25,13 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/lobbies">
+                            <NavLink to="/lobby">
                                 CREATE
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/friends">
-                                FRIENDS
+                            <NavLink to="/games">
+                                GAMES
                             </NavLink>
                         </li>
                     </ul>

@@ -1,0 +1,106 @@
+.lobby-container {
+    background-color: #1B2838;
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    margin: 15px auto;
+    text-align: center;
+}
+
+.lobby-name {
+    width: 60%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 20px;
+    background-color: #2A475E;
+    color: #C7D5E0;
+}
+
+.game-selection {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.game-name-dropdown {
+    background-color: #2A475E;
+    color: #C7D5E0;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.dropdown-icon {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-icon.open {
+    transform: rotate(180deg);
+}
+
+.game-dropdown-list {
+    position: absolute;
+    background-color: #2A475E;
+    color: #C7D5E0;
+    border-radius: 5px;
+    list-style: none;
+    padding: 0;
+    margin: 5px 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #4D7B28;
+}
+
+.game-image {
+    width: 80%;
+    border-radius: 5px;
+}
+
+.friend-list {
+    margin-top: 20px;
+}
+
+.invite-btn {
+    background-color: #4D7B28;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.friends {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.friend-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #D9D9D9;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.friend-avatar:hover {
+    transform: scale(1.1);
+}
+
+.friend-avatar.invited {
+    border: 2px solid #4D7B28;
+}
