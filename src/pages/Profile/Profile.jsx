@@ -5,7 +5,6 @@ const Profile = () => {
     const { user } = useSelector((state) => state.user);
     const { username, email, photoUrl } = user;
 
-
     return (
         <div className="profile-container">
             <div className="profile-header">

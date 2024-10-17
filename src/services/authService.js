@@ -31,6 +31,7 @@ const login = async (data) => {
       .catch((err) => err);
 
     if (res) {
+      console.log(res);
       localStorage.setItem("user", JSON.stringify(res));
     }
 

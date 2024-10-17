@@ -2,18 +2,18 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 export const useAuth = () => {
-    const { email } = useSelector((state) => state.auth);
+    const { id } = useSelector((state) => state.auth);
 
     const [auth, setAuth] = useState(false);
 
     useEffect(() => {
-        if (email) {
+        if (id) {
             setAuth(true);
         } else {
             setAuth(false);
         }
 
-    }, [email]);
+    }, [id]);
 
     return { auth };
 };

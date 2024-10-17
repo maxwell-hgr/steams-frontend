@@ -28,8 +28,8 @@ const show = async (id) => {
     }
 };
 
-const get = async () => {
-    const config = requestConfig("GET");
+const get = async (token) => {
+    const config = requestConfig("GET", null, token);
 
     try {
         const res = await fetch(`${api}/users`, config)
@@ -70,12 +70,27 @@ const del = async (data = null, token, id) => {
     }
 };
 
+const games = async (token, id) => {
+    const config = requestConfig("GET", null, token);
+    console.log(`${api}/steam/games/${id}`);
+    try {
+        const res = await fetch(`${api}/steam/games/${id}`, config)
+            .then((res) => res.json())
+            .catch((err) => err);
+
+        return res;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 const authService = {
     profile,
     show,
     get,
     put,
-    del
+    del,
+    games
 };
 
 export default authService;

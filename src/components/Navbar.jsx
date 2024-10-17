@@ -44,7 +44,9 @@ const Navbar = () => {
 
                         {" "}
                         <li>
-                            <NavLink to="/login">Login</NavLink>
+                            {location.pathname !== '/login' &&
+                                <Link to="/login">Login</Link>
+                            }
                         </li>
                     </ul >
                 </>

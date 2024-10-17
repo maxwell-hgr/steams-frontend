@@ -10,12 +10,12 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { profile } from './redux/slices/userSlice';
 import Lobby from './pages/Lobby/Lobby';
+import Games from './pages/Games/Games';
 
 function App() {
 
-  const { auth } = useAuth();
-
   const dispatch = useDispatch();
+  const { auth } = useAuth();
 
   useEffect(() => {
     if (auth) {
@@ -32,6 +32,7 @@ function App() {
             <Route path='/' element={auth ? <Home /> : <Navigate to="/login" />} />
             <Route path='/profile' element={auth ? <Profile /> : <Navigate to="/login" />} />
             <Route path='/lobby' element={auth ? <Lobby /> : <Navigate to="/login" />} />
+            <Route path='/games' element={auth ? <Games /> : <Navigate to="/login" />} />
             <Route path='/login' element={!auth ? <Login /> : <Navigate to="/" />} />
             <Route path='/register' element={!auth ? <Register /> : <Navigate to="/" />} />
           </Routes>
