@@ -6,7 +6,6 @@ const Games = () => {
     const token = useSelector((state) => state.auth.token);
     const id = useSelector((state) => state.auth.id);
     const [games, setGames] = useState([]);
-    console.log(games);
 
     useEffect(() => {
         const fetchGames = async () => {

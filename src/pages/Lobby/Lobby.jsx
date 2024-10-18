@@ -1,19 +1,41 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import userService from "../../services/userService";
 import './Lobby.css';
 
 const Lobby = () => {
-    const [selectedGame, setSelectedGame] = useState('Red Dead Redemption 2');
+    const [appId, setAppId] = useState();
+    const [gameName, setGameName] = useState('Select Game');
+    const [gameBanner, setGameBanner] = useState('');
     const [lobbyName, setLobbyName] = useState('');
     const [invitedFriends, setInvitedFriends] = useState([]);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-    const games = [
-        'Red Dead Redemption 2',
-        'The Witcher 3',
-        'Cyberpunk 2077',
-        'Grand Theft Auto V',
-        'Elden Ring'
-    ];
+    const token = useSelector((state) => state.auth.token);
+    const id = useSelector((state) => state.auth.id);
+    const [games, setGames] = useState([]);
+
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const filteredGames = games.filter(game =>
+        game.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+
+    useEffect(() => {
+        const fetchGames = async () => {
+            try {
+                console.log(token, id);
+                const res = await userService.games(token, id);
+                setGames(res);
+            } catch (error) {
+                console.error('Error fetching lobbies:', error);
+            }
+        };
+
+        fetchGames();
+    }, [id, token]);
 
     const friends = [
         { id: 1, name: 'Friend 1', avatar: 'https://image.url/friend1.jpg' },
@@ -24,7 +46,9 @@ const Lobby = () => {
     ];
 
     const handleGameSelect = (game) => {
-        setSelectedGame(game);
+        setGameName(game.name);
+        setGameBanner(game.banner);
+        setAppId(game.appId);
         setIsDropdownOpen(false);
     };
 
@@ -43,7 +67,7 @@ const Lobby = () => {
         );
         const formData = {
             lobbyName,
-            selectedGame,
+            appId,
             invitedFriends: invitedFriendNames
         };
 
@@ -67,33 +91,43 @@ const Lobby = () => {
                         className="game-name-dropdown"
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                     >
-                        {selectedGame}
+                        {gameName}
                         <span className={`dropdown-icon ${isDropdownOpen ? 'open' : ''}`}>▼</span>
                     </div>
 
                     {isDropdownOpen && (
-                        <ul className="game-dropdown-list">
-                            {games.map(game => (
-                                <li
-                                    key={game}
-                                    onClick={() => handleGameSelect(game)}
-                                    className="dropdown-item"
-                                >
-                                    {game}
-                                </li>
-                            ))}
-                        </ul>
+                        <div className="game-dropdown">
+                            <input
+                                type="text"
+                                placeholder="Search game..."
+                                className="game-search"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                            <ul className="game-dropdown-list">
+                                {filteredGames && filteredGames.map(game => (
+                                    <div key={game.appId}>
+                                        <li
+                                            onClick={() => handleGameSelect(game)}
+                                            className="dropdown-item"
+                                        >
+                                            {game.name}
+                                        </li>
+                                    </div>
+                                ))}
+                            </ul>
+                        </div>
                     )}
-
-                    <img
-                        src={`https://image.url/${selectedGame.toLowerCase().replace(/ /g, '-')}.jpg`}
-                        alt={selectedGame}
-                        className="game-image"
-                    />
                 </div>
+                {gameName !== "Select Game" &&
+                    <img
+                        src={gameBanner}
+                        alt={gameBanner}
+                        className="game-image"
+                    />}
 
                 <div className="friend-list">
-                    <button type="button" className="invite-btn">Invite Friends</button>
+                    <button type="button" className="invite-btn">Friends to Play {gameName}</button>
                     <div className="friends">
                         {friends.map(friend => (
                             <img
@@ -106,10 +140,7 @@ const Lobby = () => {
                         ))}
                     </div>
                 </div>
-
-
-
-                <button type="submit" className="submit-lobby-btn">Submit Lobby</button>
+                <button type="submit" className='submit-btn'>CREATE</button>
             </form>
         </div>
     );
