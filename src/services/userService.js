@@ -2,7 +2,6 @@ import { api, requestConfig } from "../utils/config";
 
 const profile = async (token) => {
     const config = requestConfig("GET", null, token);
-
     try {
         const res = await fetch(`${api}/users/profile`, config)
             .then((res) => res.json())

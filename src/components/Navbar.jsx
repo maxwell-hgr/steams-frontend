@@ -16,7 +16,7 @@ const Navbar = () => {
             <Link to="/">
                 <h2>STEAMS</h2>
             </Link>
-            {auth ? (
+            {auth && (
                 <>
                     <ul id="nav-links">
                         <li>
@@ -38,19 +38,7 @@ const Navbar = () => {
                     <div>
                         <UserNavbar photoUrl={photoUrl} username={username} />
                     </div>
-                </>) : (
-                <>
-                    <ul id="nav-links">
-
-                        {" "}
-                        <li>
-                            {location.pathname !== '/login' &&
-                                <Link to="/login">Login</Link>
-                            }
-                        </li>
-                    </ul >
-                </>
-            )
+                </>)
             }
 
         </nav >

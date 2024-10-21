@@ -41,10 +41,25 @@ const login = async (data) => {
   }
 };
 
+const validateToken = async (token) => {
+  const config = requestConfig("POST", null, token);
+
+  try {
+    const res = await fetch(api + "/auth/validate", config)
+      .then((res) => res.json())
+      .catch((err) => err);
+
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const authService = {
   register,
   logout,
   login,
+  validateToken
 };
 
 export default authService;

@@ -16,6 +16,7 @@ function App() {
 
   const dispatch = useDispatch();
   const { auth } = useAuth();
+  console.log(auth);
 
   useEffect(() => {
     if (auth) {
