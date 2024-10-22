@@ -71,9 +71,21 @@ const del = async (data = null, token, id) => {
 
 const games = async (token, id) => {
     const config = requestConfig("GET", null, token);
-    console.log(`${api}/steam/games/${id}`);
     try {
         const res = await fetch(`${api}/steam/games/${id}`, config)
+            .then((res) => res.json())
+            .catch((err) => err);
+
+        return res;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+const friendsWithGame = async (token, appId) => {
+    const config = requestConfig("GET", null, token);
+    try {
+        const res = await fetch(`${api}/steam/friends/${appId}`, config)
             .then((res) => res.json())
             .catch((err) => err);
 
@@ -89,7 +101,8 @@ const authService = {
     get,
     put,
     del,
-    games
+    games,
+    friendsWithGame
 };
 
 export default authService;

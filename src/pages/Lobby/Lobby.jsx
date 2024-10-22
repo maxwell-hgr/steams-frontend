@@ -8,18 +8,7 @@ const Lobby = () => {
     const token = useSelector((state) => state.auth.token);
     const id = useSelector((state) => state.auth.id);
 
-    const [appId, setAppId] = useState();
-    const [gameName, setGameName] = useState('Select Game');
-    const [gameBanner, setGameBanner] = useState('');
-    const [lobbyName, setLobbyName] = useState('');
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [games, setGames] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
-
-    const filteredGames = games.filter(game =>
-        game.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
     useEffect(() => {
         const fetchGames = async () => {
             try {
@@ -34,11 +23,33 @@ const Lobby = () => {
         fetchGames();
     }, [id, token]);
 
+    const [appId, setAppId] = useState();
+    const [gameName, setGameName] = useState('Select Game');
+    const [gameBanner, setGameBanner] = useState('');
+    const [lobbyName, setLobbyName] = useState('');
+    const [friends, setFriends] = useState([]);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const [searchTerm, setSearchTerm] = useState('');
+    const filteredGames = games.filter(game =>
+        game.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+
+    const getFriendsWithGame = async (appId) => {
+        try {
+            const res = await userService.friendsWithGame(token, appId);
+            setFriends(res);
+        } catch (error) {
+            console.error('Error fetching lobbies:', error);
+        }
+    };
 
     const handleGameSelect = (game) => {
         setGameName(game.name);
         setGameBanner(game.banner);
         setAppId(game.appId);
+        getFriendsWithGame(game.appId);
         setIsDropdownOpen(false);
     };
 
@@ -108,6 +119,9 @@ const Lobby = () => {
                 <div className="friend-list">
                     <button type="button" className="invite-btn">Friends to Play {gameName}</button>
                     <div className="friends">
+                        {friends && friends.map((friend) => (
+                            <p key={friend.id}>{friend.username}</p>
+                        ))}
                     </div>
                 </div>
                 <button type="submit" className='submit-btn'>CREATE</button>
