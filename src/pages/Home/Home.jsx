@@ -13,6 +13,7 @@ const Home = () => {
                 const { token } = JSON.parse(user);
                 const lobbies = await lobbyService.getUserLobbies(token);
                 setLobbies(lobbies);
+                console.log(lobbies);
             } catch (error) {
                 console.error('Error fetching lobbies:', error);
             }
@@ -24,7 +25,7 @@ const Home = () => {
     return (
         <div className="cards-container">
             {lobbies && lobbies.map((lobby) => (
-                <LobbyCard key={lobby.id} name={lobby.name} gameCode={lobby.gameCode} users={lobby.users} />
+                <LobbyCard key={lobby.id} name={lobby.name} gameCode={lobby.appId} users={lobby.users} game={lobby.game} />
             ))}
         </div>
     );

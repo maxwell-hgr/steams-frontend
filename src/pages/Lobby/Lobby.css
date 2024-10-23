@@ -71,11 +71,15 @@
     width: 80%;
     border-radius: 5px;
     margin-bottom: 5px;
+    position: relative;
+    /* Para que o dropdown seja posicionado corretamente sobre ele */
 }
 
 .friend-list {
     margin-top: 10px;
     background-color: #1B2838;
+    position: relative;
+    margin-bottom: 20px;
 }
 
 .invite-btn {
@@ -99,8 +103,8 @@
 }
 
 .friend-avatar {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     border: 2px solid #D9D9D9;
     transition: transform 0.3s ease;
@@ -137,4 +141,44 @@
 
 .submit-btn:hover {
     scale: 1.1;
+}
+
+.friends-dropdown {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    z-index: 10;
+    height: 300px;
+    background-color: #2A475E;
+    color: #C7D5E0;
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.friend-search {
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1B2838;
+    color: #C7D5E0;
+}
+
+.friends {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    /* Adiciona um espaço entre os avatares e a pesquisa */
+}
+
+
+.friend-dropdown-list {
+    position: absolute;
+    width: 85%;
 }
