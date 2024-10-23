@@ -10,6 +10,7 @@ export const profile = createAsyncThunk(
     async (user, thunkAPI) => {
         const token = thunkAPI.getState().auth.token;
         const data = await userService.profile(token);
+        console.log("recarregando profile");
         return data;
     }
 );

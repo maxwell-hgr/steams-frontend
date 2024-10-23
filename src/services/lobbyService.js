@@ -2,7 +2,7 @@ import { api, requestConfig } from "../utils/config";
 
 const create = async (data, token) => {
     const config = requestConfig("POST", data, token);
-
+    console.log(config);
     try {
         const res = fetch(`${api}/lobbies`, config)
             .then((res) => res.json())

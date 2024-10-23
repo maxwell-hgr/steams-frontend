@@ -1,20 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import userService from "../../services/userService";
 import lobbyService from '../../services/lobbyService';
 import './Lobby.css';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
+
 const Lobby = () => {
     const token = useSelector((state) => state.auth.token);
-    const id = useSelector((state) => state.auth.id);
 
-    const [games, setGames] = useState([]);
+    const { user } = useSelector((state) => state.user);
+    const { games } = user;
+    const { friends } = user;
+
     const [appId, setAppId] = useState();
     const [gameName, setGameName] = useState('Select Game');
     const [gameBanner, setGameBanner] = useState('');
     const [name, setName] = useState('');
-    const [friends, setFriends] = useState([]);
     const [selectedFriends, setSelectedFriends] = useState([]);
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -25,24 +26,13 @@ const Lobby = () => {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchGames = async () => {
-            try {
-                const res = await userService.games(token, id);
-                setGames(res);
-            } catch (error) {
-                console.error('Error fetching games:', error);
-            }
-        };
-
-        fetchGames();
-    }, [id, token]);
 
     const filteredGames = games.filter(game =>
         game.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     const filteredFriends = friends.filter(friend =>
-        friend.username.toLowerCase().includes(searchFriend.toLowerCase())
+        friend.username.toLowerCase().includes(searchFriend.toLowerCase()) &&
+        friend.games.some((game) => game.appId === appId)
     );
 
     const handleGameSelect = (game) => {
@@ -50,18 +40,9 @@ const Lobby = () => {
         setGameName(game.name);
         setGameBanner(game.banner);
         setAppId(game.appId);
-        getFriendsWithGame(game.appId);
         setIsDropdownOpen(false);
     };
 
-    const getFriendsWithGame = async (appId) => {
-        try {
-            const res = await userService.friendsWithGame(token, appId);
-            setFriends(res);
-        } catch (error) {
-            console.error('Error fetching friends:', error);
-        }
-    };
 
     const handleFriendSelect = (friend) => {
         if (!selectedFriends.includes(friend)) {
@@ -76,7 +57,7 @@ const Lobby = () => {
             appId,
             usersId: selectedFriends.map(friend => friend.id),
         };
-
+        console.log(token);
         try {
             await lobbyService.create(formData, token);
             navigate("/");
