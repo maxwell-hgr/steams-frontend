@@ -1,22 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-let id = null;
-let token = null;
-
-const userStorage = JSON.parse(localStorage.getItem("user"));
-
-if (userStorage) {
-    id = userStorage.id;
-    token = userStorage.token;
-}
-
-const initialState = {
-    isAuthenticated: token ? true : false,
-    id: id ? id : null,
-    token: token ? token : null
+const getUserFromStorage = () => {
+    const userStorage = JSON.parse(localStorage.getItem("user"));
+    return userStorage ? { id: userStorage.id, token: userStorage.token } : { id: null, token: null };
 };
 
-console.log(initialState);
+const { id, token } = getUserFromStorage();
+
+const initialState = {
+    isAuthenticated: Boolean(token),
+    userId: id,
+    authToken: token,
+    loading: false,
+    error: null,
+};
 
 const authSlice = createSlice({
     name: 'auth',
@@ -24,16 +21,24 @@ const authSlice = createSlice({
     reducers: {
         login: (state, action) => {
             state.isAuthenticated = true;
-            state.id = action.payload.id;
-            state.token = action.payload.token;
+            state.userId = action.payload.id;
+            state.authToken = action.payload.token;
+            localStorage.setItem("user", JSON.stringify({ id: action.payload.id, token: action.payload.token })); // Armazenar no localStorage
         },
         logout: (state) => {
             state.isAuthenticated = false;
-            state.id = null;
-            state.token = null;
+            state.userId = null;
+            state.authToken = null;
+            localStorage.removeItem("user"); // Limpar o localStorage
+        },
+        setLoading: (state, action) => {
+            state.loading = action.payload;
+        },
+        setError: (state, action) => {
+            state.error = action.payload;
         },
     },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, setLoading, setError } = authSlice.actions;
 export default authSlice.reducer;

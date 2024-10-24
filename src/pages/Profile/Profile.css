@@ -76,8 +76,7 @@
     flex: 1;
 }
 
-.profile-stats,
-.friend-list {
+.profile-stats {
     background-color: #2b2f3a;
     padding: 15px;
     border-radius: 10px;

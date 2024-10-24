@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import lobbyService from '../../services/lobbyService';
 import './Lobby.css';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
+import FriendCard from '../../components/FriendCard';
 
 
 const Lobby = () => {
+    const dropdownRef = useRef(null);
+
     const token = useSelector((state) => state.auth.token);
 
     const { user } = useSelector((state) => state.user);
@@ -26,6 +29,15 @@ const Lobby = () => {
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        // Adiciona o evento de clique global ao carregar o componente
+        document.addEventListener('mousedown', handleClickOutside);
+
+        // Remove o evento ao desmontar o componente
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     const filteredGames = games.filter(game =>
         game.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -48,6 +60,7 @@ const Lobby = () => {
         if (!selectedFriends.includes(friend)) {
             setSelectedFriends([...selectedFriends, friend]);
         }
+        console.log(selectedFriends);
     };
 
     const handleSubmit = async (e) => {
@@ -63,6 +76,12 @@ const Lobby = () => {
             navigate("/");
         } catch (error) {
             console.error('Error creating lobby:', error);
+        }
+    };
+
+    const handleClickOutside = (event) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setIsFriendsOpen(false); // Fecha o dropdown se o clique for fora do menu
         }
     };
 
@@ -122,7 +141,7 @@ const Lobby = () => {
                                 Friends to Play {gameName}
                             </button>
                             {isFriendsOpen && (
-                                <div className="friends-dropdown">
+                                <div ref={dropdownRef} className="friends-dropdown">
                                     <input
                                         type="text"
                                         placeholder="Search friend..."
@@ -130,24 +149,24 @@ const Lobby = () => {
                                         value={searchFriend}
                                         onChange={(e) => setSearchFriend(e.target.value)}
                                     />
-                                    <ul className="friend-dropdown-list">
+                                    <div className="friends-container">
                                         {filteredFriends.map(friend => (
-                                            <li
+                                            <FriendCard
                                                 key={friend.id}
+                                                photoUrl={friend.photoUrl}
+                                                username={friend.username}
                                                 onClick={() => handleFriendSelect(friend)}
-                                                className="dropdown-item"
-                                            >
-                                                {friend.username}
-                                            </li>
+                                            />
                                         ))}
-                                    </ul>
+                                    </div>
                                 </div>
                             )}
-                            <div className="friends">
-                                {selectedFriends.map(friend => (
-                                    <img key={friend.id} src={friend.photoUrl} alt="friend-avatar" className='friend-avatar' />
-                                ))}
-                            </div>
+
+                        </div>
+                        <div className="friends">
+                            {selectedFriends.map(friend => (
+                                <img key={friend.id} src={friend.photoUrl} alt="friend-avatar" className='friend-avatar' />
+                            ))}
                         </div>
                     </>
                 )}

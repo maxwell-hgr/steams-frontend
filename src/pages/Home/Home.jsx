@@ -13,7 +13,6 @@ const Home = () => {
                 const { token } = JSON.parse(user);
                 const lobbies = await lobbyService.getUserLobbies(token);
                 setLobbies(lobbies);
-                console.log(lobbies);
             } catch (error) {
                 console.error('Error fetching lobbies:', error);
             }
