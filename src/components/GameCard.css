@@ -1,0 +1,84 @@
+.game-card {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    color: #c7d5e0;
+    position: relative;
+}
+
+.game-image {
+    margin-top: 20px;
+    width: 260px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.game-info {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.game-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0;
+}
+
+.game-stats {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.game-stats div {
+    display: flex;
+    justify-content: space-between;
+    margin: 2px 0;
+}
+
+.progress-bar {
+    background-color: #4a4a4a;
+    border-radius: 2px;
+    width: 100px;
+    height: 5px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #4caf50;
+}
+
+.game-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.action-button {
+    background-color: #2a475e;
+    color: #c7d5e0;
+    border: none;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.action-button:hover {
+    background-color: #3c7fb1;
+}
+
+.more-options {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    color: #c7d5e0;
+    cursor: pointer;
+}

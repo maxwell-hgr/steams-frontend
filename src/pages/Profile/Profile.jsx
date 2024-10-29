@@ -3,58 +3,49 @@ import './Profile.css';
 
 const Profile = () => {
     const { user } = useSelector((state) => state.user);
-    const { username, email, photoUrl } = user;
+    const { username, photoUrl } = user;
 
     return (
         <div className="profile-container">
             <div className="profile-header">
-                <img className="avatar" src={[photoUrl]} alt="Avatar" />
+                <img src={photoUrl} alt="User Avatar" className="profile-avatar" />
                 <div className="profile-info">
-                    <h2>{username}</h2>
-                    <p>{email}</p>
+                    <h2 className="profile-name">{username}</h2>
+                    <p className="profile-location">location</p>
+                    <p className="profile-description">{user.description || 'Nada informado.'}</p>
                 </div>
                 <div className="profile-level">
-                    <p>Nível</p>
-                    <div className="level-badge">
-                        <span className="level-number">21</span>
-                        <div className="badge-info">
-                            <span>Elite Crewman</span>
-                            <span>100 XP</span>
+                    <span>Nível <span className="level-number">22</span></span>
+                    <img src={user.badge} alt="Badge" className="level-badge" />
+                    <button className="edit-profile-button">Editar perfil</button>
+                </div>
+            </div>
+
+            <div className="favorite-game">
+                <h3>Jogo favorito</h3>
+                <div className="profile-game-card">
+                    <img src='https://cdn.cloudflare.steamstatic.com/steam/apps/12120/header.jpg' alt='banner' className="profile-game-image" />
+                    <div className="profile-game-details">
+                        <h4 className="profile-game-title">JOGO FAVORITO</h4>
+                        <div className="profile-game-stats">
+                            <div>
+                                <span>12 Horas de jogo</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="profile-body">
-                <div className="favorite-game">
-                    <img className="game-banner" src="path/to/rede-dead-image.png" alt="Red Dead Redemption 2" />
-                    <div className="game-info">
-                        <h3>Red Dead Redemption 2</h3>
-                        <p>84 Horas de jogo</p>
-                        <p>20 Conquistas</p>
-                    </div>
-                </div>
-
-                <div className="profile-sidebar">
-                    <h3>Off-line</h3>
-                    <div className="profile-stats">
-                        <p>Insígnias <span>20</span></p>
-                        <div className="badge-icons">
-                            <img src="path/to/badge-1.png" alt="Insígnia 1" />
-                            <img src="path/to/badge-2.png" alt="Insígnia 2" />
-                            <img src="path/to/badge-3.png" alt="Insígnia 3" />
-                        </div>
-                        <p>Jogos <span>68</span></p>
-                    </div>
-
-                    <div className="friend-list">
-                        <h3>Amigos <span>71</span></h3>
-                        <div className="friend">
-                            <img src="path/to/friend-avatar.png" alt="Friend" />
-                            <p>SBL</p>
-                            <span>Off-line</span>
-                        </div>
-                        {/* Outros amigos... */}
+            <div className="profile-status">
+                <h3>Off-line</h3>
+                <p>Última vez on-line há 12</p>
+                <div className="badges">
+                    <span>Insígnias 255</span>
+                    <div className="badge-icons">
+                        <p>Badges</p>
+                        {/* {user.badges.map((badge, index) => (
+                            <img key={index} src={badge} alt="Badge" className="badge-icon" />
+                        ))} */}
                     </div>
                 </div>
             </div>

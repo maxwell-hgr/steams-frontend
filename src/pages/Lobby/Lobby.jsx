@@ -81,7 +81,7 @@ const Lobby = () => {
 
     const handleClickOutside = (event) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-            setIsFriendsOpen(false); // Fecha o dropdown se o clique for fora do menu
+            setIsFriendsOpen(false);
         }
     };
 

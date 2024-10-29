@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import GameCard from "../../components/GameCard";
 
 const Games = () => {
     const { user } = useSelector((state) => state.user);
@@ -8,11 +9,8 @@ const Games = () => {
 
     return (
         <div>
-            {games && games.map(game => (
-                <div key={game.appId}>
-                    <img src={game.banner} alt={game.name} />
-                    <h2 >{game.name}</h2>
-                </div>
+            {games.map((game) => (
+                <GameCard key={game.appId} banner={game.banner} name={game.name} />
             ))}
         </div>
     );

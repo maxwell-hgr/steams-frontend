@@ -6,23 +6,20 @@ import Register from './pages/Auth/Register';
 import Navbar from './components/Navbar';
 import Profile from './pages/Profile/Profile';
 import { useAuth } from './hooks/useAuth';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import { profile } from './redux/slices/userSlice';
+
 import Lobby from './pages/Lobby/Lobby';
 import Games from './pages/Games/Games';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 function App() {
-
-  const dispatch = useDispatch();
   const { auth } = useAuth();
-  const { token } = auth;
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (auth) {
-      dispatch(profile());
-    }
-  }, [dispatch, auth]);
+    if (auth) dispatch(profile());
+  });
 
   return (
     <>
@@ -32,9 +29,10 @@ function App() {
           <Routes>
             <Route path='/' element={auth ? <Home /> : <Navigate to="/login" />} />
             <Route path='/profile' element={auth ? <Profile /> : <Navigate to="/login" />} />
-            <Route path='/lobby' element={auth ? <Lobby token={token} /> : <Navigate to="/login" />} />
+            <Route path='/lobby' element={auth ? <Lobby /> : <Navigate to="/login" />} />
             <Route path='/games' element={auth ? <Games /> : <Navigate to="/login" />} />
             <Route path='/login' element={!auth ? <Login /> : <Navigate to="/" />} />
+            <Route path='/logout' element={!auth ? <Login /> : <Navigate to="/" />} />
             <Route path='/register' element={!auth ? <Register /> : <Navigate to="/" />} />
           </Routes>
         </div>
